@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 220 56% 32.9%;
+  --color-secondary: 219 69.5% 20.6%;
+  --color-accent: 18 83.7% 52%;
+  --color-background: 0 0% 94.9%;
+  --color-text-primary: 0 0% 94.9%;
+  --color-text-secondary: 220 78.1% 12.5%;
+  --color-muted: 221 27% 29%;
+  --font-primary: "Space Grotesk", sans-serif;
+  --font-secondary: "Ubuntu", sans-serif;
+
+  --color-border-grid: 225 12.5% 87.5%;
+  --color-button: 220 68.1% 22.2%;
+  --color-button-hover: 220 68.1% 22.2%;
+
+  --color-page-background: 220 78.1% 12.5%;
+
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+}
+
+* {
+  font-family: var(--font-primary);
+}
