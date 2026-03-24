@@ -20,7 +20,7 @@ export function SiteHeader({
   children,
 }: SiteHeaderProps) {
   return (
-    <header className="min-h-screen grid grid-cols-12 gap-1 grid-rows-[minmax(0,1fr)_auto]">
+    <header className="min-h-dvh grid grid-cols-12 gap-1 grid-rows-[minmax(0,1fr)_auto]">
       <Hero
         className="col-span-12 min-h-0"
         title={title}
