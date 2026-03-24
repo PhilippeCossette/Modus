@@ -43,7 +43,7 @@ function ScrollSliderSection({
   }, []);
 
   return (
-    <section ref={target} className="relative h-[300vh] px-1">
+    <section ref={target} className="relative h-[300vh] max-h-dvh px-1">
       <div className="sticky top-0 h-screen flex flex-col gap-8 justify-center overflow-hidden">
         <div className="flex flex-col justify-center items-center gap-2">
           <PingHeader title={pingTitle} color="secondary" />
