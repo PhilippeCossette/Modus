@@ -51,7 +51,7 @@ export function Highlight() {
               Key Points That Define Our Success
             </motion.h2>
           </span>
-          <FlipButton text="GET IN TOUCH" url="#" color="secondary" />
+          <FlipButton text="GET IN TOUCH" url="/contact" color="secondary" />
         </header>
         <div className="flex flex-col mt-6">
           {HighLightData.map((item, index) => (

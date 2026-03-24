@@ -21,9 +21,12 @@ export function DesktopNavigation() {
     <nav className="p-6  bg-background rounded-t-md border-b border-grid-line">
       <div className="grid grid-cols-12">
         <div className="col-span-3">
-          <AnimatedTitle>
-            <NavLink to="/">MODUS</NavLink>
-          </AnimatedTitle>
+          <NavLink to="/" className="text-secondary font-semibold">
+            <span className="flex gap-1">
+              <img className="w-[12px]" src="ModusLogo.svg" alt="Logo" />
+              MODUS
+            </span>
+          </NavLink>
         </div>
         <div className="flex flex-col gap-1 col-span-3 col-start-4 ml-[-10px]">
           <DesktopNavigationItem to="/about">ABOUT</DesktopNavigationItem>
@@ -57,11 +60,12 @@ function MobileNavigation() {
   return (
     <div className="relative z-30">
       <nav className="relative z-20 flex border-b border-grid-line justify-between items-center bg-background px-6 py-4 rounded-t-md">
-        <AnimatedTitle>
-          <NavLink to="/" className="text-lg text-primary">
+        <NavLink to="/" className="text-lg text-primary">
+          <span className="flex gap-1">
+            <img className="w-[12px]" src="ModusLogo.svg" alt="Logo" />
             MODUS
-          </NavLink>
-        </AnimatedTitle>
+          </span>
+        </NavLink>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="text-sm text-primary hover:text-primary/70 transition-all"
@@ -135,41 +139,57 @@ function DesktopNavigationItem({
 
 function MenuDrawer({ isOpen }: { isOpen: boolean }) {
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ y: "-100%" }}
-          animate={{ y: 0 }}
-          transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
-          exit={{ y: "-100%" }}
-          className="z-20 h-screen p-6 rounded-b-md bg-background top-full w-full left-0 flex flex-col gap-8"
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: "-100%" }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="
+            fixed
+            top-[64px]
+            m-1
+            left-0
+            right-0
+            bottom-0
+            -z-40
+            bg-background
+            p-6
+            flex
+            flex-col
+            gap-8
+          "
         >
+          {/* LINKS */}
           <div className="flex flex-col text-xl gap-3 text-secondary">
-            <NavLink
-              className="hover:text-secondary/40 transition-all"
-              to="/about"
-            >
+            <NavLink className="hover:text-secondary/40 transition" to="/about">
               About
             </NavLink>
+
             <NavLink
-              className="hover:text-secondary/40 transition-all"
+              className="hover:text-secondary/40 transition"
               to="/projects"
             >
               Projects
             </NavLink>
+
             <NavLink
-              className="hover:text-secondary/40 transition-all  "
+              className="hover:text-secondary/40 transition"
               to="/services"
             >
               Services
             </NavLink>
+
             <NavLink
-              className="hover:text-secondary/40 transition-all"
+              className="hover:text-secondary/40 transition"
               to="/contact"
             >
               Contact Us
             </NavLink>
           </div>
+
+          {/* ADDRESS */}
           <NavLink
             to="/about"
             className="flex items-start gap-2 text-sm text-secondary font-medium"
@@ -177,10 +197,12 @@ function MenuDrawer({ isOpen }: { isOpen: boolean }) {
             <div className="w-1.5 h-1.5 mt-1.5 bg-secondary" />
             <p className="w-[15ch]">1015 CROCKER ST, LOS ANGELES, USA</p>
           </NavLink>
-          <div className="flex-grow">
+
+          {/* IMAGE — FILLS REMAINING HEIGHT */}
+          <div className="flex-1 overflow-hidden rounded-md">
             <img
-              className="h-[90%] w-full object-cover rounded-md"
-              src="BentoPreview.avif"
+              className="w-full h-full object-cover"
+              src="MenuImage.avif"
               alt=""
             />
           </div>

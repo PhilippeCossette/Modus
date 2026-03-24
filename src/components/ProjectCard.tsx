@@ -61,8 +61,8 @@ function ProjectCard({ project }: Props) {
       >
         <img
           className="w-full h-full object-cover"
-          src="BentoPreview2.jpg"
-          alt=""
+          src={project.src}
+          alt={project.title}
         />
       </motion.div>
     </motion.section>

@@ -3,7 +3,25 @@ import { Navigation } from "./Navigation";
 import { PingHeader } from "./PingHeader";
 import { FlipButton } from "./FlipButton";
 
-export function Hero({ className = "" }: { className?: string }) {
+interface HeroProps {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  pingTitle: string;
+  titleMaxWidth: string;
+  className?: string;
+}
+
+export function Hero({
+  className = "",
+  pingTitle,
+  title,
+  description,
+  buttonText,
+  titleMaxWidth,
+  buttonLink,
+}: HeroProps) {
   return (
     <div className={`col-span-12 min-h-0 h-full flex flex-col`}>
       <Navigation />
@@ -11,18 +29,17 @@ export function Hero({ className = "" }: { className?: string }) {
         className={`z-10 overflow-hidden relative bg-page-background grid grid-cols-12 gap-5 px-6 pb-12 h-full rounded-b-md items-end grid-rows-[1fr_auto] md:grid-rows-[1fr]  ${className}`}
       >
         <div className="col-span-12 lg:col-span-8 flex flex-col gap-4">
-          <PingHeader title="BUILDING YOUR DREAMS" />
+          <PingHeader title={pingTitle} />
 
           <motion.h1
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.7 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-6xl text-secondary "
+            className={`text-4xl md:text-6xl lg:text-6xl text-secondary`}
+            style={{ maxWidth: titleMaxWidth }}
           >
-            Redefining Spaces,
-            <br />
-            Shaping Bold Futures
+            {title}
           </motion.h1>
         </div>
         <motion.div
@@ -32,11 +49,8 @@ export function Hero({ className = "" }: { className?: string }) {
           transition={{ delay: 0.7, duration: 0.5 }}
           className="col-start-1 col-span-12 sm:col-span-6 lg:col-start-10 lg:col-span-3 gap-5 flex flex-col items-start"
         >
-          <p className="max-w-80 text-lg text-secondary text-sm">
-            We create visionary spaces that inspire, combining innovative design
-            with lasting functionality to bring your ideas to life.
-          </p>
-          <FlipButton variant="button" url="/about" text="ABOUT US" />
+          <p className="max-w-80 text-secondary text-sm">{description}</p>
+          <FlipButton variant="button" url={buttonLink} text={buttonText} />
         </motion.div>
         <HeroBg />
       </div>

@@ -1,54 +1,81 @@
 import { ColoredBlock, ImageBlock, InfoBlock } from "../components/Block";
-import { Hero } from "../components/Hero";
 import { Highlight } from "../components/Highlight";
 import { ImageMenu } from "../components/ImageMenu";
 import ScrollSliderSection from "../components/ScrollSliderSection";
+import { SiteHeader } from "../components/SiteHeader";
+import { HomeProjects } from "../data/Projects";
 
 export function Home() {
   return (
     <div className="flex flex-col gap-1">
-      <SiteHeader />
+      <SiteHeader
+        pingTitle="BUILDING YOUR DREAMS"
+        titleMaxWidth="20ch"
+        title="Redefining Spaces, Shaping Bold Futures"
+        description="We create visionary spaces that inspire, combining innovative design with lasting functionality to bring your ideas to life."
+        buttonText="ABOUT US"
+        buttonLink="/about"
+      >
+        <ColoredBlock
+          initial={{ opacity: 0, height: "0%" }}
+          whileInView={{ opacity: 1, height: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.2 }}
+          className="col-span-12 md:col-span-6 lg:col-span-3 text-text-primary bg-secondary hover:bg-secondary/95"
+          title="OUR PROJECTS"
+          to="/projects"
+          description="Explore our portfolio to see concepts come to life."
+        />
+        <ColoredBlock
+          initial={{ opacity: 0, height: "0%" }}
+          whileInView={{ opacity: 1, y: 0, height: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.2, delay: 0.1 }}
+          className="col-span-12 md:col-span-6 lg:col-span-3 text-text-primary bg-primary hover:bg-primary/90"
+          title="OUR SERVICES"
+          to="/services"
+          description="Explore our services and elevate your project with us."
+        />
+        <ColoredBlock
+          initial={{ opacity: 0, height: "-0%" }}
+          whileInView={{ opacity: 1, height: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.2, delay: 0.2 }}
+          className="col-span-12 lg:col-span-6 text-text-primary bg-accent hover:bg-accent/95"
+          title="GET IN TOUCH"
+          to="/contact"
+          description="Contact us to discuss your vision and bring it to life."
+        />
+      </SiteHeader>
       <BentoGrid />
-      <ScrollSliderSection />
+      <ScrollSliderSection
+        pingTitle="OUR PROJECTS"
+        title="See Our Newest Projects in Action"
+        titleMaxWidth="15ch"
+        buttonText="VIEW ALL"
+        buttonLink="/projects"
+        projects={HomeProjects}
+      />
       <Highlight />
-      <ImageMenu />
+      <ImageMenu
+        menu={[
+          {
+            title: "Your Vision, Our Expertise",
+            ping: "OUR SERVICES",
+            buttonText: "DISCOVER SERVICES",
+            url: "/services",
+            src: "ServiceBackground.avif",
+          },
+          {
+            title: "Let's Start the Conversation",
+            ping: "CONTACT US",
+            buttonText: "GET IN TOUCH",
+            url: "/contact",
+            src: "ContactBackground.avif",
+          },
+        ]}
+      />
     </div>
-  );
-}
-
-function SiteHeader() {
-  return (
-    <header className="min-h-screen grid grid-cols-12 gap-1 grid-rows-[minmax(0,1fr)_auto]">
-      <Hero className="col-span-12 min-h-0" />
-
-      <ColoredBlock
-        initial={{ opacity: 0, height: "0%" }}
-        whileInView={{ opacity: 1, height: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.2 }}
-        className="col-span-12 md:col-span-6 lg:col-span-3 text-text-primary bg-secondary hover:bg-secondary/95"
-        title="OUR PROJECTS"
-        description="Explore our portfolio to see concepts come to life."
-      />
-      <ColoredBlock
-        initial={{ opacity: 0, height: "0%" }}
-        whileInView={{ opacity: 1, y: 0, height: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.2, delay: 0.1 }}
-        className="col-span-12 md:col-span-6 lg:col-span-3 text-text-primary bg-primary hover:bg-primary/90"
-        title="OUR SERVICES"
-        description="Explore our services and elevate your project with us."
-      />
-      <ColoredBlock
-        initial={{ opacity: 0, height: "-0%" }}
-        whileInView={{ opacity: 1, height: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.2, delay: 0.2 }}
-        className="col-span-12 lg:col-span-6 text-text-primary bg-accent hover:bg-accent/95"
-        title="GET IN TOUCH"
-        description="Contact us to discuss your vision and bring it to life."
-      />
-    </header>
   );
 }
 

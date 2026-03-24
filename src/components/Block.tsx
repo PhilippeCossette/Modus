@@ -1,40 +1,85 @@
-import { motion, type HTMLMotionProps } from "framer-motion";
-import { AnimatedTitle } from "./AnimatedTitle";
 import { PingHeader } from "../components/PingHeader";
 import { FlipButton } from "../components/FlipButton";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import type { MotionProps } from "framer-motion";
+import { AnimatedTitle } from "./AnimatedTitle";
 
-type BlockProps = {
+const MotionNavLink = motion(NavLink);
+
+type BlockProps = MotionProps & {
   className?: string;
-  title: string;
-  description: string;
-} & HTMLMotionProps<"div">;
+  title?: React.ReactNode;
+  icon?: React.ReactNode;
+  description?: string;
+  href?: string;
+  to?: string;
+};
 
 export function ColoredBlock({
   className = "",
   title,
+  icon,
   description,
+  href,
+  to,
   ...motionProps
 }: BlockProps) {
+  const content = (
+    <>
+      {icon && <div className="text-2xl">{icon}</div>}
+
+      <div className={`flex flex-col ${icon ? "mt-6" : "gap-6"}`}>
+        <AnimatedTitle>{title}</AnimatedTitle>
+
+        {description && (
+          <p className="text-sm mt-2 max-w-[220px]">{description}</p>
+        )}
+      </div>
+    </>
+  );
+
+  const base = `${className} transition hover:scale-[0.99] duration-200 rounded-md p-6 pr-0 flex flex-col md:gap-[65px]`;
+
+  if (href) {
+    return (
+      <motion.a
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+        href={href}
+        className={base}
+        {...motionProps}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
+  if (to) {
+    return (
+      <MotionNavLink
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+        to={to}
+        className={base}
+        {...motionProps}
+      >
+        {content}
+      </MotionNavLink>
+    );
+  }
+
   return (
     <motion.div
-      viewport={{ margin: "-50px" }}
+      initial="rest"
       whileHover="hover"
-      className={`${className} transition-all  hover:scale-[0.99] duration-200 rounded-md p-6 pr-0 flex flex-col gap-12 md:gap-[65px]`}
+      animate="rest"
+      className={base}
       {...motionProps}
     >
-      <AnimatedTitle>{title}</AnimatedTitle>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.2, delay: 0.8 },
-        }}
-        viewport={{ once: true }}
-        className="text-sm mt-2 max-w-[200px]"
-      >
-        {description}
-      </motion.p>
+      {content}
     </motion.div>
   );
 }
@@ -46,6 +91,8 @@ export function InfoBlock({
   buttonText = "LEARN MORE",
   buttonLink = "#",
   className = "",
+  divClassName = "",
+  textClassName = "",
 }: {
   title: string;
   description: string;
@@ -53,6 +100,8 @@ export function InfoBlock({
   buttonText?: string;
   buttonLink?: string;
   className?: string;
+  divClassName?: string;
+  textClassName?: string;
 }) {
   return (
     <motion.div
@@ -66,9 +115,13 @@ export function InfoBlock({
       viewport={{ once: true, margin: "-50px" }}
       className={`rounded-md h-full overflow-hidden col-span-12 sm:col-span-6 row-span-1 ${className}`}
     >
-      <div className="flex flex-col items-start gap-3 bg-background p-6 h-fit">
+      <div
+        className={`flex flex-col items-start gap-3 ${divClassName} bg-background p-6 h-fit`}
+      >
         <PingHeader title={title} />
-        <p className="mb-6 text-xl md:text-xl text-secondary">{description}</p>
+        <p className={`mb-6 text-xl text-secondary ${textClassName}`}>
+          {description}
+        </p>
         {withButton && (
           <FlipButton variant="button" url={buttonLink} text={buttonText} />
         )}

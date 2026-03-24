@@ -3,23 +3,31 @@ import { FlipButton } from "./FlipButton";
 import { PingHeader } from "./PingHeader";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export function ImageMenu() {
+type ImageMenu = {
+  title: string;
+  ping: string;
+  buttonText: string;
+  url: string;
+  src: string;
+};
+
+interface ImageMenuItemProps {
+  menu: ImageMenu[];
+}
+
+export function ImageMenu({ menu }: ImageMenuItemProps) {
   return (
     <div className="grid grid-cols-12 gap-1  lg:h-screen">
-      <ImageMenuItem
-        title="Your Vision, Our Expertise"
-        ping="OUR SERVICES"
-        buttonText="DISCOVER SERVICES"
-        url="#"
-        src="BentoPreview.avif"
-      />
-      <ImageMenuItem
-        title="Let's Start the Conversation"
-        ping="CONTACT US"
-        buttonText="GET IN TOUCH"
-        url="#"
-        src="BentoPreview.avif"
-      />
+      {menu.map((item, index) => (
+        <ImageMenuItem
+          key={index}
+          title={item.title}
+          ping={item.ping}
+          buttonText={item.buttonText}
+          url={item.url}
+          src={item.src}
+        />
+      ))}
     </div>
   );
 }
@@ -51,7 +59,8 @@ function ImageMenuItem({
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.2, delay: 0.6 }}
+        whileHover={{ opacity: 0.8 }}
+        transition={{ duration: 0.2 }}
         viewport={{ once: true }}
         className="absolute inset-0 bg-black/40"
       />
