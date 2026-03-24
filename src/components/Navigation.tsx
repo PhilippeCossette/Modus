@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { AnimatedTitle } from "./AnimatedTitle";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";

@@ -1,4 +1,3 @@
-import { ColoredBlock } from "./Block";
 import { Hero } from "./Hero";
 
 interface SiteHeaderProps {

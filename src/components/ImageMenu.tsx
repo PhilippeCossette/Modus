@@ -1,7 +1,6 @@
-import { useRef } from "react";
 import { FlipButton } from "./FlipButton";
 import { PingHeader } from "./PingHeader";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 type ImageMenu = {
   title: string;
