@@ -27,11 +27,9 @@ export function ColoredBlock({
 }: BlockProps) {
   const content = (
     <>
-      {icon && <div className="text-2xl">{icon}</div>}
-
-      <div className={`flex flex-col ${icon ? "mt-6" : "gap-6"}`}>
+      <div className={`flex flex-col gap-2`}>
+        {icon && <div className="text-2xl mb-5">{icon}</div>}
         <AnimatedTitle>{title}</AnimatedTitle>
-
         {description && (
           <p className="text-sm mt-2 max-w-[220px]">{description}</p>
         )}
