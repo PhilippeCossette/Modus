@@ -43,7 +43,7 @@ function ScrollSliderSection({
   }, []);
 
   return (
-    <section ref={target} className="relative h-[300vh] max-h-dvh px-1">
+    <section ref={target} className="relative h-[300vh] px-1">
       <div className="sticky top-0 h-screen flex flex-col gap-8 justify-center overflow-hidden">
         <div className="flex flex-col justify-center items-center gap-2">
           <PingHeader title={pingTitle} color="secondary" />
@@ -61,7 +61,11 @@ function ScrollSliderSection({
             <FlipButton text={buttonText} url={buttonLink} color="secondary" />
           )}
         </div>
-        <motion.div ref={sliderRef} style={{ x }} className="flex gap-2">
+        <motion.div
+          ref={sliderRef}
+          style={{ x }}
+          className="flex gap-2 max-h-dvh"
+        >
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
