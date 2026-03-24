@@ -23,7 +23,7 @@ export function Hero({
   buttonLink,
 }: HeroProps) {
   return (
-    <div className={`col-span-12 min-h-0 h-full flex flex-col`}>
+    <div className={`col-span-12  h-full flex flex-col min-h-[500px]`}>
       <Navigation />
       <div
         className={`z-10 overflow-hidden relative bg-page-background grid grid-cols-12 gap-5 px-6 pb-12 h-full rounded-b-md items-end grid-rows-[1fr_auto] md:grid-rows-[1fr]  ${className}`}
