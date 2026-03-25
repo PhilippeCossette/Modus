@@ -7,6 +7,7 @@ import { TbBriefcase2 } from "react-icons/tb";
 import { RiProgress5Line } from "react-icons/ri";
 import { LiaProjectDiagramSolid } from "react-icons/lia";
 import { ImageMenu } from "../components/ImageMenu";
+import { motion } from "framer-motion";
 
 export function Services() {
   return (
@@ -144,18 +145,43 @@ function ServiceCard({
     <div
       className={`col-span-12 md:col-span-6 lg:col-span-4 relative rounded-md min-h-[500px] overflow-hidden ${className}`}
     >
-      <img
+      <motion.img
         src={imageSrc}
         alt={title}
         className="absolute inset-0 w-full h-full object-cover"
+        initial={{ width: "0%" }}
+        whileInView={{ width: "100%" }}
+        transition={{ duration: 0.5 }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/35 to-transparent"></div>
       <div className="items-center justify-between relative z-10 flex flex-col gap-5 text-white py-12 p-6 h-full">
-        {icon && <div className="text-3xl mb-4">{icon}</div>}
+        {icon && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl mb-4"
+          >
+            {icon}
+          </motion.div>
+        )}
 
         <div className="text-center">
-          <h3 className="text-3xl mb-2">{title}</h3>
-          <p className="">{description}</p>
+          <motion.h3
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl mb-2"
+          >
+            {title}
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {description}
+          </motion.p>
         </div>
       </div>
     </div>
