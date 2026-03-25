@@ -43,9 +43,9 @@ function ScrollSliderSection({
   }, []);
 
   return (
-    <section ref={target} className="relative h-[300vh] px-1">
-      <div className="sticky top-0 h-screen flex flex-col gap-8 justify-center overflow-hidden">
-        <div className="flex flex-col justify-center items-center gap-2">
+    <section ref={target} className="relative h-[300vh] px-1 py-8">
+      <div className="sticky top-0 h-dvh flex flex-col gap-8 justify-center overflow-hidden">
+        <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <PingHeader title={pingTitle} color="secondary" />
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ function ScrollSliderSection({
         <motion.div
           ref={sliderRef}
           style={{ x }}
-          className="flex gap-2 max-h-dvh"
+          className="flex gap-2 min-h-0 flex-1"
         >
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
